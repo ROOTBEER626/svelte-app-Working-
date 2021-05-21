@@ -36,10 +36,6 @@
     background: #83caa3;
   }
 
-  .todo:focus-within {
-    background: rgba(255, 255, 255, 0.8);
-  }
-
   .todo-description:focus {
     box-shadow: 0px 0.2em 2.5em #c4c4c4;
     transform: scale(1.025);

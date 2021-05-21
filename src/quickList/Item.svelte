@@ -3,7 +3,6 @@
   import Do from "../Do.js";
   import NewDo from "./newDo.svelte";
   import ToDo from "./ToDo.svelte";
-  import PHeader from "./PHeader.svelte"
 
   export let id, name, description, complete, todos;
 
@@ -41,6 +40,17 @@
 
     if (yes) {
       dispatch("delete", { id });
+    }
+  }
+
+  //will still change the checkbox value but on a reload will not have updated
+  function checkComplete() {
+    if (complete == true) if (doCount != completedDoCount) {
+      const yes = confirm("This project still has uncomplete dos are you sure you want to complete it?");
+
+      if (yes) {
+        triggerUpdate();
+      }
     }
   }
 
@@ -172,7 +182,7 @@
         class="complete-checkbox"
         type="checkbox"
         bind:checked={complete}
-        on:change={() => triggerUpdate()} />
+        on:change={() => checkComplete()} />
     </div>
     <div class="howMany" >
       <span> {completedDoCount}/{doCount} </span>
