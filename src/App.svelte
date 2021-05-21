@@ -9,6 +9,7 @@
   .container {
     width: 100%;
     background: #009579;
+		height: 100%;
   }
 
   :global(.container *) {

@@ -71,11 +71,21 @@
     font-size: 1.1em;
   }
 
+  .working-on {
+    margin: 0;
+    margin-bottom: 3px;
+    text-align: center;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+
 </style>
 
 <div class="list">
   <NewProject on:newProject={handleNewProject} />
   <br/>
+  <p class="working-on"> Current Projects </p>
   {#each projectsSorted as project (project)}
     <Project {...project} on:update={handleUpdate} on:delete={handleDelete}  />
   {:else}

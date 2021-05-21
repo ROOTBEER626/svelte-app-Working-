@@ -73,6 +73,7 @@
   .project {
     display: grid;
     border-style: solid;
+    border-bottom: none;
     margin-bottom: 10px;
   }
   .project-view {
@@ -81,12 +82,11 @@
     padding: 15px;
     background: #83caa3;
     grid-column: 1;
-    border-style: dashed;
-    border: 10px;
+    border-style: solid;
+    border-width: 10px;
+    border-top: none;
     margin-bottom: 50px;
     overflow-wrap: break-word;
-    border-style: dotted;
-    border-width: 1px;
   }
 
   .project:hover .project-view {
@@ -132,10 +132,13 @@
   }
 
   .description-input {
+    border: none;
+    border-top-style: dashed;
+    border-top-style: 5px;
+    border-top-color: black;
     display: none;
     flex-grow: 3;
     background: none;
-    border: none;
     outline: none;
     font-weight: 500;
     font-size: 1em;
@@ -144,22 +147,38 @@
     min-height: 100px;
   }
 
-  .todos {
+  .todos-view {
     grid-column: 2;
     margin-right: 10px;
+    border-style: solid;
+    border-width: 5px;
+    padding: none;
   }
 
-  .todos {
+  .todos-view {
     display: none;
   }
 
-  .project:hover .todos {
+  .project:hover .todos-view {
     display: block;
   }
 
-  .todos:hover {
+  .todos-view:hover {
     display: block;
     background: #83caa3;
+  }
+
+  .header {
+    border: none;
+    border-bottom-style: dashed;
+    border-bottom-style: 5px;
+    border-bottom-color: black;
+    border-top-style: dashed;
+    border-top-style: 5px;
+    border-top-color: black;
+    margin-left: 3px;
+    margin-top: 3px;
+    margin-bottom: 3px;
   }
 
 
@@ -197,9 +216,9 @@
         on:blur={() => triggerUpdate()} />
     </div>
   </div>
-  <div class=todos  >
+  <div class=todos-view  >
     <NewDo on:newToDo={handleNewToDo} />
-    <div> {name} To-Do List</div>
+    <div class="header"> {name}'s To-Do List</div>
     {#each ToDosSorted as todo (todo)}
       <ToDo {...todo} on:updateDo={handleUpdateToDo} on:deleteDo={handleDeleteToDo} />
     {:else}

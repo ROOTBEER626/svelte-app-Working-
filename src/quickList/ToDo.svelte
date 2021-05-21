@@ -60,14 +60,18 @@
   }
 
   .todo-description {
+    border: none;
+    border-top-style: dashed;
+    border-top-style: 5px;
+    border-top-color: black;
     display: none;
     flex-grow: 3;
     background: none;
-    border: none;
     outline: none;
     font-weight: 500;
     font-size: 1em;
     width: 100%;
+    min-height: 100px;
   }
 
 </style>

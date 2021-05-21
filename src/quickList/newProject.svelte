@@ -19,6 +19,11 @@
 </script>
 
 <style>
+
+  label {
+    font-size: 20px;
+  }
+
   input {
     box-sizing: border-box;
     margin-bottom: 15px;
@@ -56,10 +61,10 @@
 <input type="text" on:keyup={handleKeyUp} bind:value placeholder="+ Add item" />
 -->
 <form>
- <label for="Add">Create Project</label> <br/>
+ <label for="Add">New Project?</label> <br/>
  <label for="Name">Name</label>
  <input type='text' bind:value={name} /> <br/>
  <label for="Description">Description</label>
  <textarea type='text' bind:value={description} /> <br/>
- <input type='button' value='Create Do' on:click="{createDo}" />
+ <input type='button' value='Create Project' on:click="{createDo}" />
  </form>
