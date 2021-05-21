@@ -50,12 +50,7 @@
   }
 
   .todo.complete {
-    background: #dddddd;
-  }
-
-  .todo.complete .todo-name {
-    color: #666666;
-    text-decoration: line-through;
+    background: #488c6d;
   }
 
   .todo-name {

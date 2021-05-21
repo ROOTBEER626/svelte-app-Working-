@@ -104,12 +104,7 @@
   }
 
   .project.complete {
-    background: #dddddd;
-  }
-
-  .project.complete .name-input {
-    color: #666666;
-    text-decoration: line-through;
+    background: #488c6d;
   }
 
   .name-input {
