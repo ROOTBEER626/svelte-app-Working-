@@ -7,7 +7,7 @@
   export let id, name, description, complete, todos;
 
   $: doCount = todos.length;
-  $: completedDoCount = todos.filter((item) => item.complete).length;
+  $: completedDoCount = todos.filter((project) => project.complete).length;
 
   const dispatch = createEventDispatcher();
 
@@ -24,19 +24,19 @@
   }
 
   function handleDeleteToDo({ detail }) {
-    const index = todos.findIndex((item)=> item.id === detail.id);
+    const index = todos.findIndex((project)=> project.id === detail.id);
     todos.splice(index, 1);
     dispatch("update", { id, name, description, complete, todos });
   }
 
   function handleUpdateToDo({ detail} ) {
-    const index = todos.findIndex((item) => item.id === detail.id);
+    const index = todos.findIndex((project) => project.id === detail.id);
     todos[index] = detail
     dispatch("update", { id, name, description, complete, todos });
   }
 
   function handleDoubleClick() {
-    const yes = confirm("Are you sure you wish to delete this item?");
+    const yes = confirm("Are you sure you wish to delete this project?");
 
     if (yes) {
       dispatch("delete", { id });
@@ -70,12 +70,12 @@
 
 <style>
 
-  .item {
+  .project {
     display: grid;
     border-style: solid;
     margin-bottom: 10px;
   }
-  .project {
+  .project-view {
     display: block;
     align-items: center;
     padding: 15px;
@@ -89,13 +89,13 @@
     border-width: 1px;
   }
 
-  .item:hover .project {
+  .project:hover .project-view {
     transform: scale(1.025);
     border-width: 5px;
     margin-right: 5px;
   }
 
-  .item:hover .description-input {
+  .project:hover .description-input {
     display: block;
   }
 
@@ -113,7 +113,7 @@
     display: block;
   }
 
-  .project.complete {
+  .project-view.complete {
     background: #488c6d;
   }
 
@@ -153,7 +153,7 @@
     display: none;
   }
 
-  .item:hover .todos {
+  .project:hover .todos {
     display: block;
   }
 
@@ -166,8 +166,8 @@
 
 </style>
 
-<div class="item" >
-  <div class="project" class:complete on:dblclick={handleDoubleClick} >
+<div class="project" >
+  <div class="project-view" class:complete on:dblclick={handleDoubleClick} >
     <div class="name" >
       <input
         class="name-input"

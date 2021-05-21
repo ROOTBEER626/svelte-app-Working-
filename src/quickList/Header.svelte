@@ -1,8 +1,8 @@
 <script>
-  import { items } from "../stores";
+  import { projects } from "../stores";
 
-  $: itemCount = $items.length;
-  $: completedItemCount = $items.filter((item) => item.complete).length;
+  $: projectCount = $projects.length;
+  $: completedProjectCount = $projects.filter((project) => project.complete).length;
 </script>
 
 <style>
@@ -20,5 +20,5 @@
 
 <div class="header">
   <div>Vinny's To-Do List</div>
-  <span> {completedItemCount}/{itemCount} </span>
+  <span> {completedProjectCount}/{projectCount} </span>
 </div>

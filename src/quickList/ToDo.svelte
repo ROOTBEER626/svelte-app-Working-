@@ -2,11 +2,7 @@
   import { createEventDispatcher } from "svelte";
   import Do from "../Do.js";
 
-
-
-
   export let id, name, description, complete;
-
 
   const dispatch = createEventDispatcher();
 

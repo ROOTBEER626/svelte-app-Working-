@@ -9,7 +9,7 @@
 
   function createDo() {
     if (name.length === 0) return;
-    dispatch("newitem", { name, description })
+    dispatch("newProject", { name, description })
     //console.log("dispatched a new Do")
     //console.log(name);
     //console.log(description);

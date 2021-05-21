@@ -2,15 +2,15 @@
   import { onMount } from "svelte";
   import { v4 as uuidv4 } from "uuid";
 
-  import { items } from "../stores";
+  import { projects } from "../stores";
 
   import TodoApi from "../TodoApi";
-  import Item from "./Item.svelte";
-  import NewItem from "./NewItem.svelte";
+  import Project from "./Project.svelte";
+  import NewProject from "./NewProject.svelte";
 
 
-  function handleNewItem({ detail }) {
-    $items = [
+  function handleNewProject({ detail }) {
+    $projects = [
       {
         id: uuidv4(),
         name:detail.name,
@@ -18,34 +18,34 @@
         complete: false,
         todos: []
       },
-      ...$items,
+      ...$projects,
     ];
-    TodoApi.save($items);
+    TodoApi.save($projects);
   }
 
   function handleUpdateToDo({ detail }) {
-    const index =$items.findIndex((item) => item.id === detail.id);
-    $items[index].todos = detail.todos;
-    TodoApi.save($items);
+    const index =$projects.findIndex((project) => project.id === detail.id);
+    $projects[index].todos = detail.todos;
+    TodoApi.save($projects);
   }
 
   function handleUpdate({ detail }) {
-    const index = $items.findIndex((item) => item.id === detail.id);
-    $items[index] = detail;
-    TodoApi.save($items);
+    const index = $projects.findIndex((project) => project.id === detail.id);
+    $projects[index] = detail;
+    TodoApi.save($projects);
   }
 
   function handleDelete({ detail }) {
     //console.log("We handling delete")
-    $items = $items.filter((item) => item.id !== detail.id);
-    TodoApi.save($items);
+    $projects = $projects.filter((project) => project.id !== detail.id);
+    TodoApi.save($projects);
   }
 
-  let itemsSorted = [];
+  let projectsSorted = [];
 
   $: {
-    itemsSorted = [...$items];
-    itemsSorted.sort((a, b) => {
+    projectsSorted = [...$projects];
+    projectsSorted.sort((a, b) => {
       if (a.complete && b.complete) return 0;
       if (a.complete) return 1;
       if (b.complete) return -1;
@@ -53,7 +53,7 @@
   }
 
   onMount(async () => {
-    $items = await TodoApi.getAll();
+    $projects = await TodoApi.getAll();
     //ToDoApi.save($items);
   });
 </script>
@@ -74,11 +74,11 @@
 </style>
 
 <div class="list">
-  <NewItem on:newitem={handleNewItem} />
+  <NewProject on:newProject={handleNewProject} />
   <br/>
-  {#each itemsSorted as item (item)}
-    <Item {...item} on:update={handleUpdate} on:delete={handleDelete}  />
+  {#each projectsSorted as project (project)}
+    <Project {...project} on:update={handleUpdate} on:delete={handleDelete}  />
   {:else}
-    <p class="list-status">No Items Exist</p>
+    <p class="list-status">No Projects Exist</p>
   {/each}
 </div>
