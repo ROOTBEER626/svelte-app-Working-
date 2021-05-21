@@ -149,7 +149,7 @@
 
   .todos-view {
     grid-column: 2;
-    margin-right: 10px;
+    margin-right: none;
     border-style: solid;
     border-width: 5px;
     padding: none;
