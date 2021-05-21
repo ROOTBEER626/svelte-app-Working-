@@ -33,7 +33,7 @@
     display: block;
     align-items: center;
     padding: 15px;
-    background: #ffffff;
+    background: #83caa3;
   }
 
   .todo:focus-within {

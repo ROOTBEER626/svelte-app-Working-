@@ -10,37 +10,25 @@
 
 
   function triggerUpdate() {
-    //dispatch("update", { id, name, description, complete });
     if (name.length === 0) return;
-    //console.log("triggering update");
-    //console.log(todos[0]);
     dispatch("update", { id, name, description, complete, todos });
   }
 
   function handleNewToDo({ detail }) {
     if (detail.name.length === 0) return;
     todos.push({ id: detail.id, name: detail.name, description: detail.description, complete: detail.complete })
-    //dispatch("update", { id:id, name:name, description:description, complete:complete, todos:todos });
     dispatch("update", { id, name, description, complete, todos });
   }
 
   function handleDeleteToDo({ detail }) {
-    //else {
-    //console.log(todos.length);
     const index = todos.findIndex((item)=> item.id === detail.id);
-    //console.log(index);
     todos.splice(index, 1);
-    //console.log(todos.length);
-    //dispatch("updateToDo", { id:id, name:name, description:description, complete:complete, todos:todos });
     dispatch("update", { id, name, description, complete, todos });
   }
 
   function handleUpdateToDo({ detail} ) {
     const index = todos.findIndex((item) => item.id === detail.id);
-    //console.log(index);//index is found correctly
     todos[index] = detail
-    console.log(todos[index].name); //is equal to the entire detial for some reason //its undefined
-    //dispatch("updateToDo", { id:id, name:name, description:description, complete:complete, todos:todos });
     dispatch("update", { id, name, description, complete, todos });
   }
 
@@ -52,7 +40,7 @@
     }
   }
 
-  /*let ToDosSorted = [];
+  let ToDosSorted = [];
 
   $: {
     ToDosSorted = [...todos];
@@ -63,7 +51,6 @@
       if (b.complete) return -1;
     });
   }
-  */
 
 </script>
 
@@ -71,32 +58,41 @@
 
   .item {
     display: grid;
-    grid-auto-rows: 1;
-    grid-auto-columns: 2;
-    border-style: dashed;
-    border: 10px;
+    border-style: solid;
+    margin-bottom: 10px;
   }
   .project {
     display: block;
     align-items: center;
     padding: 15px;
-    background: #ffffff;
+    background: #83caa3;
     grid-column: 1;
     border-style: dashed;
     border: 10px;
     margin-bottom: 50px;
-    overflow-inline: 150px;
-    word-wrap: break-word;
     overflow-wrap: break-word;
+    border-style: dotted;
+    border-width: 1px;
   }
 
-  .project:focus-within {
-    background: rgba(255, 255, 255, 0.8);
+  .item:hover .project {
+    transform: scale(1.025);
+    border-width: 5px;
+    margin-right: 5px;
   }
+
+  .item:hover .description-input {
+    display: block;
+  }
+
 
   .description-input:focus {
     box-shadow: 0px 0.2em 2.5em #c4c4c4;
     transform: scale(1.025);
+  }
+
+  .project:hover {
+    border-width: 5px;
   }
 
   .project:hover .description-input {
@@ -141,6 +137,7 @@
 
   .todos {
     grid-column: 2;
+    margin-right: 10px;
   }
 
   .todos {
@@ -149,6 +146,11 @@
 
   .item:hover .todos {
     display: block;
+  }
+
+  .todos:hover {
+    display: block;
+    background: #83caa3;
   }
 
 
@@ -185,15 +187,10 @@
   </div>
   <div class=todos  >
     <NewDo on:newToDo={handleNewToDo} />
-    {#each todos as todo (todo)}
+    {#each ToDosSorted as todo (todo)}
       <ToDo {...todo} on:updateDo={handleUpdateToDo} on:deleteDo={handleDeleteToDo} />
     {:else}
       <p>Nothing to Do</p>
     {/each}
   </div>
 </div>
-
-<!-- div to hold below
-  for each here (todo in todos)
-    ToDo on:update{updateDo} on:dblclikc={deleteDo} on:newDo={createDo}
-  -->
