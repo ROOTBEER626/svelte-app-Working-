@@ -7,11 +7,12 @@
 
   export let id, name, description, complete;
 
+
   const dispatch = createEventDispatcher();
 
   function triggerUpdate() {
     if (name.length === 0) return;
-    dispatch("updateDo", { id, name, description, complete });
+    dispatch("updateDo", { id:id, name:name, description:description, complete:complete });
   }
 
 
@@ -108,6 +109,7 @@
             class="todo-description"
             type ="text"
             bind:value={description}
+            readonly={complete}
             on:keyup={({key, target}) => key === 'Enter' && target.blur()}
             on:blur={() => triggerUpdate()} />
         </div>

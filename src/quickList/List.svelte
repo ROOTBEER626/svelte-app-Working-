@@ -77,7 +77,7 @@
   <NewItem on:newitem={handleNewItem} />
   <br/>
   {#each itemsSorted as item (item)}
-    <Item {...item} on:update={handleUpdate} on:delete={handleDelete} on:updateToDo={handleUpdateToDo} />
+    <Item {...item} on:update={handleUpdate} on:delete={handleDelete}  />
   {:else}
     <p class="list-status">No Items Exist</p>
   {/each}

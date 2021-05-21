@@ -20,20 +20,27 @@
   function handleNewToDo({ detail }) {
     if (detail.name.length === 0) return;
     todos.push({ id: detail.id, name: detail.name, description: detail.description, complete: detail.complete })
-    dispatch("updateToDo", { id:id, name:name, description:description, complete:complete, todos:todos });
+    //dispatch("update", { id:id, name:name, description:description, complete:complete, todos:todos });
+    dispatch("update", { id, name, description, complete, todos });
   }
 
   function handleDeleteToDo({ detail }) {
-    if (todos.length < 2) {todos.length = 0;}
-    else { const index = todos.findIndex((item)=> item.id === detail.id);
-            todos.splice(index, index);}
-    dispatch("updateToDo", { id:id, name:name, description:description, complete:complete, todos:todos });
+    //if (todos.length < 2) {todos.length = 0;}
+    //else {
+    const index = todos.findIndex((item)=> item.id === detail.id);
+    console.log(index);
+    todos.splice(index, index);
+    //dispatch("updateToDo", { id:id, name:name, description:description, complete:complete, todos:todos });
+    dispatch("update", { id, name, description, complete, todos });
   }
 
-  function handleUpdateToDo({detail} ) {
+  function handleUpdateToDo({ detail} ) {
     const index = todos.findIndex((item) => item.id === detail.id);
-    todos[index] = ({ detail});
-    dispatch("updateToDo", { id:id, name:name, description:description, complete:complete, todos:todos });
+    //console.log(index);//index is found correctly
+    todos[index] = detail
+    console.log(todos[index].name); //is equal to the entire detial for some reason //its undefined
+    //dispatch("updateToDo", { id:id, name:name, description:description, complete:complete, todos:todos });
+    dispatch("update", { id, name, description, complete, todos });
   }
 
   function handleDoubleClick() {
