@@ -105,7 +105,7 @@
         </div>
         <br/>
         <div class="description" >
-          <input
+          <textarea
             class="todo-description"
             type ="text"
             bind:value={description}

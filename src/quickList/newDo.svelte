@@ -33,6 +33,20 @@
     cursor: pointer;
   }
 
+  textarea {
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    padding: 15px;
+    border: none;
+    outline: none;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.25);
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1em;
+    cursor: pointer;
+  }
+
   input,
   input::placeholder {
     color: #ffffff;
@@ -46,6 +60,6 @@
  <label for="Name">Name</label>
  <input type='text' bind:value={name} /> <br/>
  <label for="Description">Description</label>
- <input type='text' bind:value={description} /> <br/>
+ <textarea type='text' bind:value={description} /> <br/>
  <input type='button' value='Create Do' on:click="{createDo}" />
  </form>

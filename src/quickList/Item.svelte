@@ -3,8 +3,12 @@
   import Do from "../Do.js";
   import NewDo from "./newDo.svelte";
   import ToDo from "./ToDo.svelte";
+  import PHeader from "./PHeader.svelte"
 
   export let id, name, description, complete, todos;
+
+  $: doCount = todos.length;
+  $: completedDoCount = todos.filter((item) => item.complete).length;
 
   const dispatch = createEventDispatcher();
 
@@ -175,6 +179,9 @@
         bind:checked={complete}
         on:change={() => triggerUpdate()} />
     </div>
+    <div class="howMany" >
+      <span> {completedDoCount}/{doCount} </span>
+    </div>
     <br/>
     <div class="description" >
       <textarea
@@ -187,6 +194,7 @@
   </div>
   <div class=todos  >
     <NewDo on:newToDo={handleNewToDo} />
+    <div> {name} To-Do List</div>
     {#each ToDosSorted as todo (todo)}
       <ToDo {...todo} on:updateDo={handleUpdateToDo} on:deleteDo={handleDeleteToDo} />
     {:else}
