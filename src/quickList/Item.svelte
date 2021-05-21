@@ -25,11 +25,12 @@
   }
 
   function handleDeleteToDo({ detail }) {
-    //if (todos.length < 2) {todos.length = 0;}
     //else {
+    //console.log(todos.length);
     const index = todos.findIndex((item)=> item.id === detail.id);
-    console.log(index);
-    todos.splice(index, index);
+    //console.log(index);
+    todos.splice(index, 1);
+    //console.log(todos.length);
     //dispatch("updateToDo", { id:id, name:name, description:description, complete:complete, todos:todos });
     dispatch("update", { id, name, description, complete, todos });
   }
